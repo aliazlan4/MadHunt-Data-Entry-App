@@ -5,9 +5,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
-                <div class="panel-heading">Add a Marker</div>
+                <div class="panel-heading">
+                        Add a Marker
+                </div>
 
                 <div class="panel-body">
+                    <input type="text" class="form-control" style="width:300px" id="search" placeholder="Search">
                     <div id="map" style="height: 450px; width: 100%;"></div>
                 </div>
 
@@ -29,6 +32,7 @@
     var map;
     var marker = null;
     var circle = null;
+    var markers = [];
     function initMap() {
         var isb = {lat: 33.664508, lng: 73.087013};
         map = new google.maps.Map(document.getElementById('map'), {
@@ -58,6 +62,47 @@
             map.setZoom(15);
             });
         }
+
+        var input = document.getElementById('search');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
     }
     function placeMarker(location) {
         var temp1 = new google.maps.Marker({
@@ -105,5 +150,5 @@
         });
     }
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzXlSM6C3A1VnBpCvqnlmTmxUdlzOQhYg&callback=initMap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzXlSM6C3A1VnBpCvqnlmTmxUdlzOQhYg&libraries=places&callback=initMap"></script>
 @endsection

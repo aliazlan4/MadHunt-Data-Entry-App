@@ -169,7 +169,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'F:\\Laravel\\madhunt info\\storage\\framework/cache/data',
+        'path' => 'F:\\Codistan\\madhunt info\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -274,12 +274,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'F:\\Laravel\\madhunt info\\storage\\app',
+        'root' => 'F:\\Codistan\\madhunt info\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'F:\\Laravel\\madhunt info\\storage\\app/public',
+        'root' => 'F:\\Codistan\\madhunt info\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
@@ -312,7 +312,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'F:\\Laravel\\madhunt info\\resources\\views/vendor/mail',
+        0 => 'F:\\Codistan\\madhunt info\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -392,7 +392,7 @@
     'lifetime' => 120,
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'F:\\Laravel\\madhunt info\\storage\\framework/sessions',
+    'files' => 'F:\\Codistan\\madhunt info\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -411,8 +411,8 @@
   array (
     'paths' => 
     array (
-      0 => 'F:\\Laravel\\madhunt info\\resources\\views',
+      0 => 'F:\\Codistan\\madhunt info\\resources\\views',
     ),
-    'compiled' => 'F:\\Laravel\\madhunt info\\storage\\framework\\views',
+    'compiled' => 'F:\\Codistan\\madhunt info\\storage\\framework\\views',
   ),
 );
